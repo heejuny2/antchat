@@ -28,3 +28,7 @@
   width: 10px;
   height: 10px;
 }
+.button {
+  text-decoration: none;
+  cursor: pointer;
+}

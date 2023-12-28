@@ -7,24 +7,29 @@ export default function Nav() {
 			<Link className={styles.logo} to={"/"}>
 				<div className={styles.logo}>Ant_Chat</div>
 			</Link>
+
 			<div className={styles.userLogin}>
-				<Button
-					style={{
-						fontSize: "14px",
-						color: "black",
-					}}
-				>
-					로그인
-				</Button>
+				<Link className={styles.button} to={"/login"}>
+					<Button
+						style={{
+							fontSize: "14px",
+							color: "black",
+						}}
+					>
+						로그인
+					</Button>
+				</Link>
 				<Space></Space>
-				<Button
-					style={{
-						fontSize: "14px",
-						color: "black",
-					}}
-				>
-					회원가입
-				</Button>
+				<Link className={styles.button} to={"/register"}>
+					<Button
+						style={{
+							fontSize: "14px",
+							color: "black",
+						}}
+					>
+						회원가입
+					</Button>
+				</Link>
 			</div>
 		</div>
 	);

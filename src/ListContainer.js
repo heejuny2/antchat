@@ -3,11 +3,11 @@ import Button from "./components/Button";
 import ListItem from "./components/ListItem";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import db from './firebase'
+import {db} from './firebase'
 import ListItemLayout from "./components/ListItemLayout";
 import Pagination from "./components/Pagination";
 import { useSearchParams } from "react-router-dom";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, getDocs } from "firebase/firestore";
 
 export default function ListContainer() {
 	
@@ -20,17 +20,27 @@ export default function ListContainer() {
 	// const MAX_PAGE = getData().totalCount// = ;
 
 	async function getData(pageParam) {
-		const { data } = await axios.get("https://api.github.com/repos/facebook/react/issues", {params: {page:pageParam}});
-		setList(data);
+		// const { data } = await axios.get("https://api.github.com/repos/facebook/react/issues", {params: {page:pageParam}});
+		// setList(data);
     // console.log(data)
 	}
 	useEffect(() => {
 		getData(page);
-		onSnapshot(collection(db, 'posts'), (snapshot) =>{
-			console.log(snapshot.docs.map((doc)=> doc.data()))
-		})
+		getPosts()
 	}, [page]);
-
+	
+	function getPosts() {
+		const postCollection = collection(db, "posts")
+		getDocs(postCollection).then( response => {
+			const post = response.docs.map( doc => ({
+				data: doc.data(),
+				id: doc.id
+			}))
+			setList(post)
+			console.log(post)
+		})
+		
+	}
 	return (
 		<>
 			<div className={styles.listContainer}>

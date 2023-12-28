@@ -1,15 +1,15 @@
-import styles from "./CreateIssue.module.css";
+import styles from "./Login.module.css";
 import cx from "clsx";
 import { useRef, useState } from "react";
 import Button from "../components/Button";
 import { collection, addDoc } from "firebase/firestore";
 import {db} from "../firebase";
-import dayjs from "dayjs";
 
-export default function CreateIssue() {
+
+export default function Login() {
 	const ref = useRef();
   // const now  = dayjs()
-	const [inputValues, setInputValues] = useState({ title: "", tag: "", body: "" });
+	const [inputValues, setInputValues] = useState({ userId: "", password: "", body: "" });
 	async function handleSubmit(e) {
     e.preventDefault();
 		if (e.target.elements.title.value === "") {
@@ -31,9 +31,9 @@ export default function CreateIssue() {
 			<div className={styles.avatar}></div>
 			<div className={cx(styles.inputWrapper, styles.border)}>
 				<form onSubmit={handleSubmit}>
-					<input name="title" value={inputValues.title} onChange={onChange} className={cx(styles.input, styles.border)} placeholder="제목" ref={ref}></input>
-					<input name="tag" value={inputValues.tag} onChange={onChange} className={cx(styles.input, styles.border)} placeholder="테그"></input>
-					<textarea name="body" value={inputValues.body} onChange={onChange} className={cx(styles.input, styles.textarea, styles.border)} placeholder=" 게시물 내용을 입력하세요"></textarea>
+					<label>아이디</label>
+					<input name="userId" value={inputValues.title} onChange={onChange} className={cx(styles.input, styles.border)} placeholder="아이디" ref={ref}></input>
+					<input name="password" value={inputValues.tag} onChange={onChange} className={cx(styles.input, styles.border)} placeholder="비밀번호"></input>
 					<div className={styles.buttonWrapper}>
 						<Button
 							type="submit"
@@ -44,7 +44,7 @@ export default function CreateIssue() {
 								border: "none",
 							}}
 						>
-							게시물 작성
+							로그인
 						</Button>
 					</div>
 				</form>
