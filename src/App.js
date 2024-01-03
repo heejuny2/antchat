@@ -5,6 +5,7 @@ import Issue from './pages/Issue.js'
 import CreateIssue from "./pages/CreateIssue.js";
 import Register from "./pages/Register.js";
 import Login from "./pages/Login.js";
+import Article from "./pages/Article.js"
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route path="/example" element={<Example />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/article/:id" element={<Article />} />
 			</Routes>
 
 		</>

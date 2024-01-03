@@ -3,43 +3,41 @@ import Button from "./components/Button";
 import ListItem from "./components/ListItem";
 import { useState, useEffect } from "react";
 // import axios from "axios";
-import {db} from './firebase'
+import { db } from "./firebase";
 import ListItemLayout from "./components/ListItemLayout";
 import Pagination from "./components/Pagination";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 
 export default function ListContainer() {
-	
 	const [inputValue, setInputValue] = useState("");
 	const [list, setList] = useState([]);
 	// const [page, setPage] = useState(1);
 	const MAX_PAGE = 5;
-  const [searchParams, setSearchParams] = useSearchParams();
-  const page = parseInt(searchParams.get('page') ?? '1', 10)
+	const [searchParams, setSearchParams] = useSearchParams();
+	const page = parseInt(searchParams.get("page") ?? "1", 10);
 	// const MAX_PAGE = getData().totalCount// = ;
 
 	async function getData(pageParam) {
 		// const { data } = await axios.get("https://api.github.com/repos/facebook/react/issues", {params: {page:pageParam}});
 		// setList(data);
-    // console.log(data)
+		// console.log(data)
 	}
 	useEffect(() => {
 		getData(page);
-		getPosts()
+		getPosts();
 	}, [page]);
-	
+
 	function getPosts() {
-		const postCollection = collection(db, "posts")
-		getDocs(postCollection).then( response => {
-			const post = response.docs.map( doc => ({
+		const postCollection = collection(db, "posts");
+		getDocs(postCollection).then((response) => {
+			const post = response.docs.map((doc) => ({
 				data: doc.data(),
-				id: doc.id
-			}))
-			setList(post)
-			console.log(post)
-		})
-		
+				id: doc.id,
+			}));
+			setList(post);
+			console.log(post);
+		});
 	}
 	return (
 		<>
@@ -65,12 +63,12 @@ export default function ListContainer() {
 						</div>
 					</ListItemLayout>
 					{list.map((item) => (
-						<ListItem data={item} key={item.id}/>
+						<ListItem data={item} key={item.id} />
 					))}
 				</div>
 			</div>
 			<div className={styles.paginationContainer}>
-				<Pagination maxPage={MAX_PAGE} currentPage={page} onClickPageButton={(pageNumber) => setSearchParams({page: pageNumber})} />
+				<Pagination maxPage={MAX_PAGE} currentPage={page} onClickPageButton={(pageNumber) => setSearchParams({ page: pageNumber })} />
 			</div>
 		</>
 	);
