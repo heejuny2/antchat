@@ -8,8 +8,8 @@ import dayjs from "dayjs";
 
 export default function CreateIssue() {
 	const ref = useRef();
-  // const now  = dayjs()
-	const [inputValues, setInputValues] = useState({ title: "", tag: "", body: "" });
+  const now  = (dayjs().format('YYYY/MM/DD').toString())
+	const [inputValues, setInputValues] = useState({ title: "", tag: "", body: "", createdAt:now });
 	async function handleSubmit(e) {
     e.preventDefault();
 		if (e.target.elements.title.value === "") {

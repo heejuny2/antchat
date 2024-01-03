@@ -21,7 +21,12 @@
   color: #0969da
 }
 
-.description {
-  color: rgb(87, 96, 106);
+.tag {
+  color: rgb(30, 0, 200);
   font-size: 12px;
+}
+
+.createdAt {
+  color: gray;
+  font-size: 10px;
 }

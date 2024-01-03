@@ -28,12 +28,12 @@ export default function Login() {
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.avatar}></div>
 			<div className={cx(styles.inputWrapper, styles.border)}>
 				<form onSubmit={handleSubmit}>
 					<label>아이디</label>
 					<input name="userId" value={inputValues.title} onChange={onChange} className={cx(styles.input, styles.border)} placeholder="아이디" ref={ref}></input>
-					<input name="password" value={inputValues.tag} onChange={onChange} className={cx(styles.input, styles.border)} placeholder="비밀번호"></input>
+					<label>비밀번호</label>
+					<input name="password" value={inputValues.tag} type="password" onChange={onChange} className={cx(styles.input, styles.border)} placeholder="비밀번호"></input>
 					<div className={styles.buttonWrapper}>
 						<Button
 							type="submit"

@@ -2,12 +2,12 @@ import styles from "./ListContainer.module.css";
 import Button from "./components/Button";
 import ListItem from "./components/ListItem";
 import { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import {db} from './firebase'
 import ListItemLayout from "./components/ListItemLayout";
 import Pagination from "./components/Pagination";
 import { useSearchParams } from "react-router-dom";
-import { collection, onSnapshot, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 export default function ListContainer() {
 	
